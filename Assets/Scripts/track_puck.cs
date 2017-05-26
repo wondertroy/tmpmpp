@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class track_puck : MonoBehaviour
 {
-	public float offsetX, offsetY, offsetZ;
+	public float offsetX, offsetY, offsetZ, yPosOffset;
 
 	public SteamVR_TrackedObject controller;
 
@@ -22,18 +22,18 @@ public class track_puck : MonoBehaviour
 	{
 		
 		if (gameObject.CompareTag ("wall")) {
-			transform.position = new Vector3 (controller.transform.position.x, controller.transform.position.y, transform.position.z);
+			transform.position = new Vector3 (controller.transform.position.x, controller.transform.position.y + yPosOffset, transform.position.z);
 			transform.eulerAngles = new Vector3 (controller.transform.eulerAngles.x, controller.transform.eulerAngles.y, controller.transform.eulerAngles.z);
 			transform.Rotate (new Vector3(offsetX, offsetY, offsetZ));
 		} else if (gameObject.CompareTag ("floor")) {
-			transform.position = new Vector3 (controller.transform.position.x, transform.position.y, controller.transform.position.z);
+			transform.position = new Vector3 (controller.transform.position.x, transform.position.y + yPosOffset, controller.transform.position.z);
 			transform.eulerAngles = new Vector3 (controller.transform.eulerAngles.x, controller.transform.eulerAngles.y, controller.transform.eulerAngles.z);
 			transform.Rotate (new Vector3(offsetX, offsetY, offsetZ));
 		} else if (gameObject.CompareTag ("inPlace")) {
-			transform.position = new Vector3 (controller.transform.position.x, controller.transform.position.y, controller.transform.position.z);
+			transform.position = new Vector3 (controller.transform.position.x, controller.transform.position.y + yPosOffset, controller.transform.position.z);
 			transform.eulerAngles = new Vector3 (controller.transform.eulerAngles.x, controller.transform.eulerAngles.y, controller.transform.eulerAngles.z);
 			transform.Rotate (new Vector3(offsetX, offsetY, offsetZ));
-		}
+		} 
 			
 	}
 

@@ -2,8 +2,7 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\track_puck.cs">
     <Files>
-      <File FileName="Assets\Scripts\track_puck.cs" Line="50" Column="2" />
-      <File FileName="Assets\Scripts\track_puck_camera.cs" Line="7" Column="41" />
+      <File FileName="Assets\Scripts\track_puck.cs" Line="33" Column="115" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
