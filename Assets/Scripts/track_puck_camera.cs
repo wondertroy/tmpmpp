@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class track_puck_camera : MonoBehaviour
 {
+	public float offsetX, offsetY, offsetZ;
 
 	public SteamVR_TrackedObject controller;
 
@@ -19,9 +20,19 @@ public class track_puck_camera : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		
-		transform.position = new Vector3 (controller.transform.position.x, controller.transform.position.y, controller.transform.position.z);
-		transform.rotation = controller.transform.rotation;
+		if (gameObject.CompareTag ("wall")) {
+			transform.position = new Vector3 (controller.transform.position.x, controller.transform.position.y, transform.position.z);
+			transform.eulerAngles = new Vector3 (controller.transform.eulerAngles.x, controller.transform.eulerAngles.y, controller.transform.eulerAngles.z);
+			transform.Rotate (new Vector3(offsetX, offsetY, offsetZ));
+		} else if (gameObject.CompareTag ("floor")) {
+			transform.position = new Vector3 (controller.transform.position.x, transform.position.y, controller.transform.position.z);
+			transform.eulerAngles = new Vector3 (controller.transform.eulerAngles.x, controller.transform.eulerAngles.y, controller.transform.eulerAngles.z);
+			transform.Rotate (new Vector3(offsetX, offsetY, offsetZ));
+		} else if (gameObject.CompareTag ("inPlace")) {
+			transform.position = new Vector3 (controller.transform.position.x, controller.transform.position.y, controller.transform.position.z);
+			transform.eulerAngles = new Vector3 (controller.transform.eulerAngles.x, controller.transform.eulerAngles.y, controller.transform.eulerAngles.z);
+			transform.Rotate (new Vector3(offsetX, offsetY, offsetZ));
+		}
 			
 	}
 

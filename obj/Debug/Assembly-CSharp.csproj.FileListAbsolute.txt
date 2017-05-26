@@ -31,3 +31,5 @@ E:\woody\Documents\Unity Projects\VRTest\Temp\bin\Debug\UnityEngine.HoloLens.xml
 E:\woody\Documents\Unity Projects\VRTest\Temp\bin\Debug\UnityEngine.VR.xml
 E:\woody\Documents\Unity Projects\VRTest\obj\Debug\Assembly-CSharp.dll
 E:\woody\Documents\Unity Projects\VRTest\obj\Debug\Assembly-CSharp.pdb
+C:\Users\s4321923\Documents\tmpmpp\obj\Debug\Assembly-CSharp.dll
+C:\Users\s4321923\Documents\tmpmpp\obj\Debug\Assembly-CSharp.pdb
