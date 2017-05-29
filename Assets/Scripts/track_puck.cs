@@ -45,7 +45,7 @@ public class track_puck : MonoBehaviour
 	{
 		deActivate ();
 		collisionTimer = 0;
-		SteamVR_Controller.Input((int) controller.index).TriggerHapticPulse(3999, Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad);
+		//SteamVR_Controller.Input((int) controller.index).TriggerHapticPulse(3999, Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad);
 		if (other.gameObject.CompareTag ("ActivateTrigger")) {
 			Activate ();
 		}
@@ -55,7 +55,7 @@ public class track_puck : MonoBehaviour
 		if (other.gameObject.CompareTag ("MazeWall") || other.gameObject.CompareTag ("Gate")) {
 			if (collisionTimer < 4000) {
 				collisionTimer++;
-				SteamVR_Controller.Input((int) controller.index).TriggerHapticPulse(2000, Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad);
+				//SteamVR_Controller.Input((int) controller.index).TriggerHapticPulse(2000, Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad);
 			}
 		}
 	}
@@ -65,16 +65,16 @@ public class track_puck : MonoBehaviour
 			deActivate ();
 		}
 		collisionTimer = 0;
-		SteamVR_Controller.Input((int) controller.index).TriggerHapticPulse(3999, Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad);
+		//SteamVR_Controller.Input((int) controller.index).TriggerHapticPulse(3999, Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad);
 	}
 
 	void deActivate ()
 	{
-		SteamVR_Controller.Input((int) controller.index).TriggerHapticPulse(3999, Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad);
+		//SteamVR_Controller.Input((int) controller.index).TriggerHapticPulse(3999, Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad);
 		isActive = false;
 		Renderer rend = GetComponent<Renderer> ();
 		rend.material.SetColor ("_Color", Color.black);
-		SteamVR_Controller.Input((int) controller.index).TriggerHapticPulse(3999, Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad);
+		//SteamVR_Controller.Input((int) controller.index).TriggerHapticPulse(3999, Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad);
 		cubeLight.enabled = false;
 
 
