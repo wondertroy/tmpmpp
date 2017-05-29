@@ -47,10 +47,9 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\activate_trigger.cs" />
+     <Compile Include="Assets\Scripts\gate.cs" />
      <Compile Include="Assets\Scripts\gate_trigger.cs" />
-     <Compile Include="Assets\Scripts\rotate.cs" />
      <Compile Include="Assets\Scripts\track_puck.cs" />
-     <Compile Include="Assets\Scripts\track_puck_camera.cs" />
      <Compile Include="Assets\SteamVR\Extras\SteamVR_GazeTracker.cs" />
      <Compile Include="Assets\SteamVR\Extras\SteamVR_LaserPointer.cs" />
      <Compile Include="Assets\SteamVR\Extras\SteamVR_Teleporter.cs" />

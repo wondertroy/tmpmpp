@@ -4,13 +4,25 @@ using UnityEngine;
 
 public class gate_trigger : MonoBehaviour {
 
+	public bool correctlyActivated{ get; set;}
+
 	// Use this for initialization
-	void Start () {
-		
+	void Start ()
+	{
+		correctlyActivated = false;
+
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+
+	void OnTriggerEnter (Collider other) {
+		if (gameObject.CompareTag (other.gameObject.tag)) {
+			Debug.Log ("trigger activated " + gameObject.tag);
+			correctlyActivated = true;
+		}
 	}
+
+	void OnTriggerExit (Collider other) {
+		correctlyActivated = false;
+	}
+
+
 }

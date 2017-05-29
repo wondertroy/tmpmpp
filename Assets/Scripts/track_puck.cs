@@ -15,36 +15,20 @@ public class track_puck : MonoBehaviour
 	private ushort collisionTimer;
 
 	// Use this for initialization
-	void Start ()
-	{
+	void Start () {
 		cubeLight.enabled = true;
 		collisionTimer = 0;
 		isActive = true;
-
 	}
 	
 	// Update is called once per frame
-	void Update ()
-	{
-		
-		if (gameObject.CompareTag ("wall")) {
-			transform.position = new Vector3 (controller.transform.position.x, controller.transform.position.y + yPosOffset, transform.position.z);
-			transform.eulerAngles = new Vector3 (controller.transform.eulerAngles.x, controller.transform.eulerAngles.y, controller.transform.eulerAngles.z);
-			transform.Rotate (new Vector3(offsetX, offsetY, offsetZ));
-		} else if (gameObject.CompareTag ("floor")) {
-			transform.position = new Vector3 (controller.transform.position.x, transform.position.y + yPosOffset, controller.transform.position.z);
-			transform.eulerAngles = new Vector3 (controller.transform.eulerAngles.x, controller.transform.eulerAngles.y, controller.transform.eulerAngles.z);
-			transform.Rotate (new Vector3(offsetX, offsetY, offsetZ));
-		} else if (gameObject.CompareTag ("inPlace")) {
-			transform.position = new Vector3 (controller.transform.position.x, controller.transform.position.y + yPosOffset, controller.transform.position.z);
-			transform.eulerAngles = new Vector3 (controller.transform.eulerAngles.x, controller.transform.eulerAngles.y, controller.transform.eulerAngles.z);
-			transform.Rotate (new Vector3(offsetX, offsetY, offsetZ));
-		} 
-			
+	void Update () {
+		transform.position = new Vector3 (controller.transform.position.x, controller.transform.position.y + yPosOffset, controller.transform.position.z);
+		transform.eulerAngles = new Vector3 (controller.transform.eulerAngles.x, controller.transform.eulerAngles.y, controller.transform.eulerAngles.z);
+		transform.Rotate (new Vector3(offsetX, offsetY, offsetZ));
 	}
 
-	void OnTriggerEnter (Collider other)
-	{
+	void OnTriggerEnter (Collider other) {
 		deActivate ();
 		collisionTimer = 400;
 		SteamVR_Controller.Input((int) controller.index).TriggerHapticPulse(3999, Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad);
@@ -55,9 +39,9 @@ public class track_puck : MonoBehaviour
 
 	void OnTriggerStay(Collider other) {
 		if (other.gameObject.CompareTag ("MazeWall") || other.gameObject.CompareTag ("Gate")) {
-			if (collisionTimer < 4000) {
+			if (collisionTimer < 3000) {
 				collisionTimer++;
-				SteamVR_Controller.Input((int) controller.index).TriggerHapticPulse(collisionTimer, Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad);
+				SteamVR_Controller.Input((int) controller.index).TriggerHapticPulse(2000, Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad);
 			}
 		}
 	}
@@ -79,12 +63,12 @@ public class track_puck : MonoBehaviour
 		SteamVR_Controller.Input((int) controller.index).TriggerHapticPulse(3999, Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad);
 		if (cubeLight != null) {
 			cubeLight.enabled = isActive;
+			cubeLight.range = 0;
 		}
 
 	}
 
-	void Activate ()
-	{
+	void Activate () {
 		isActive = true;
 		Renderer rend = GetComponent<Renderer> ();
 		rend.material.SetColor ("_Color", Color.green);
