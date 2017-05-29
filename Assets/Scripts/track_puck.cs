@@ -10,9 +10,15 @@ public class track_puck : MonoBehaviour
 
 	private bool isActive;
 
+	public Light cubeLight;
+
+	private ushort collisionTimer;
+
 	// Use this for initialization
 	void Start ()
 	{
+		cubeLight.enabled = true;
+		collisionTimer = 0;
 		isActive = true;
 
 	}
@@ -39,20 +45,42 @@ public class track_puck : MonoBehaviour
 
 	void OnTriggerEnter (Collider other)
 	{
-		if (other.gameObject.CompareTag ("MazeWall")) {
-			deActivate ();
-
-		} else if (other.gameObject.CompareTag ("ActivateTrigger")) {
+		deActivate ();
+		collisionTimer = 400;
+		SteamVR_Controller.Input((int) controller.index).TriggerHapticPulse(3999, Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad);
+		if (other.gameObject.CompareTag ("ActivateTrigger")) {
 			Activate ();
 		}
+	}
 
+	void OnTriggerStay(Collider other) {
+		if (other.gameObject.CompareTag ("MazeWall") || other.gameObject.CompareTag ("Gate")) {
+			if (collisionTimer < 4000) {
+				collisionTimer++;
+				SteamVR_Controller.Input((int) controller.index).TriggerHapticPulse(collisionTimer, Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad);
+			}
+		}
+	}
+
+	void OnTriggerExit(Collider other) {
+		if (collisionTimer > 1000) {
+			deActivate ();
+		}
+		collisionTimer = 0;
+		SteamVR_Controller.Input((int) controller.index).TriggerHapticPulse(3999, Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad);
 	}
 
 	void deActivate ()
 	{
+		SteamVR_Controller.Input((int) controller.index).TriggerHapticPulse(3999, Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad);
 		isActive = false;
 		Renderer rend = GetComponent<Renderer> ();
 		rend.material.SetColor ("_Color", Color.black);
+		SteamVR_Controller.Input((int) controller.index).TriggerHapticPulse(3999, Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad);
+		if (cubeLight != null) {
+			cubeLight.enabled = isActive;
+		}
+
 	}
 
 	void Activate ()
@@ -60,5 +88,6 @@ public class track_puck : MonoBehaviour
 		isActive = true;
 		Renderer rend = GetComponent<Renderer> ();
 		rend.material.SetColor ("_Color", Color.green);
+		cubeLight.enabled = isActive;
 	}
 }
