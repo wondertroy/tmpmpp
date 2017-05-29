@@ -8,7 +8,7 @@ public class track_puck : MonoBehaviour
 
 	public SteamVR_TrackedObject controller;
 
-	private bool isActive;
+	public bool isActivated{ get; set; }
 
 	public Light cubeLight;
 
@@ -18,7 +18,7 @@ public class track_puck : MonoBehaviour
 	void Start () {
 		cubeLight.enabled = true;
 		collisionTimer = 0;
-		isActive = true;
+		isActivated = true;
 	}
 	
 	// Update is called once per frame
@@ -57,21 +57,21 @@ public class track_puck : MonoBehaviour
 	void deActivate ()
 	{
 		SteamVR_Controller.Input((int) controller.index).TriggerHapticPulse(3999, Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad);
-		isActive = false;
-		Renderer rend = GetComponent<Renderer> ();
-		rend.material.SetColor ("_Color", Color.black);
+		isActivated = false;
+		//Renderer rend = GetComponent<Renderer> ();
+		//rend.material.SetColor ("_Color", Color.black);
 		SteamVR_Controller.Input((int) controller.index).TriggerHapticPulse(3999, Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad);
 		if (cubeLight != null) {
-			cubeLight.enabled = isActive;
+			cubeLight.enabled = isActivated;
 			cubeLight.range = 0;
 		}
 
 	}
 
 	void Activate () {
-		isActive = true;
-		Renderer rend = GetComponent<Renderer> ();
-		rend.material.SetColor ("_Color", Color.green);
-		cubeLight.enabled = isActive;
+		isActivated = true;
+		//Renderer rend = GetComponent<Renderer> ();
+		//rend.material.SetColor ("_Color", Color.green);
+		cubeLight.enabled = isActivated;
 	}
 }

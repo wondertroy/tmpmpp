@@ -14,7 +14,7 @@ public class gate_trigger : MonoBehaviour {
 	}
 
 	void OnTriggerEnter (Collider other) {
-		if (gameObject.CompareTag (other.gameObject.tag)) {
+		if (gameObject.CompareTag (other.gameObject.tag) && other.GetComponent<track_puck>().isActivated) {
 			Debug.Log ("trigger activated " + gameObject.tag);
 			correctlyActivated = true;
 		}
