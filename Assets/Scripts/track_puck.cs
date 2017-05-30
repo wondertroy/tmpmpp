@@ -29,11 +29,12 @@ public class track_puck : MonoBehaviour
 	}
 
 	void OnTriggerEnter (Collider other) {
-		deActivate ();
-		collisionTimer = 400;
+		collisionTimer = 700;
 		SteamVR_Controller.Input((int) controller.index).TriggerHapticPulse(3999, Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad);
 		if (other.gameObject.CompareTag ("ActivateTrigger")) {
 			Activate ();
+		} else if (other.gameObject.CompareTag ("MazeWall") || other.gameObject.CompareTag("Gate")) {
+			deActivate ();
 		}
 	}
 
@@ -63,7 +64,6 @@ public class track_puck : MonoBehaviour
 		SteamVR_Controller.Input((int) controller.index).TriggerHapticPulse(3999, Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad);
 		if (cubeLight != null) {
 			cubeLight.enabled = isActivated;
-			cubeLight.range = 0;
 		}
 
 	}
